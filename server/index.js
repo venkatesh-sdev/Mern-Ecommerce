@@ -1,35 +1,82 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
+// Third party Packages
+import express from 'express'
 import dotenv from 'dotenv';
+import cors from 'cors';
+import multer from 'multer';
+import morgan from 'morgan';
+import mongoose from 'mongoose';
 
-// Environtment variables configuration;
+// Built-In packages
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { randomUUID } from 'crypto';
+
+// Routers
+import ProductRouter from './routes/products.route.js';
+
+// Controllers
+
+// Middlewares
+
+// Models
+
+// --- Defaults --- //
 dotenv.config();
-
-// MongoDb Connection with Cluster
-const DbConnection = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_CONNECTION);
-        console.log("Database Connected Sucessfull!!!");
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-// Creating express instance
 const app = express();
 
+// Overwriting a Default filename and dirname finder because of using module type exports and imports
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Getting Environment variable
-const PORT = process.env.PORT || 4001;
+// Parsing the data
+app.use(express.json({ limit: '30mb' }));
+app.use(express.urlencoded({ limit: '30mb', extended: true }));
 
-// Create and Listen a sever at http://localhost:3001
-app.listen(PORT, () => {
-    console.log("Server Running at http://localhost:" + PORT);
+// For Avoiding Cross-Orgin-Resource-Sharing Error
+app.use(cors());
+
+// Logger Middleware 
+app.use(morgan('common'));
+
+// A express Built-In Middleware used to set the path for directory
+app.use("/assets", express.static(path.join(__dirname, 'public/assets')))
+
+// --- File Storage --- //
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/assets');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname + Date.now() + ":" + randomUUID());
+    }
 });
+export const upload = multer({ storage });
+
+// --- Routes With Files --- //
+
+// --- Router Routes --- //
+app.use('/api/products', ProductRouter);
 
 
-export default app;
+// --- Connections --- //
+const DBConnection = async () => {
+    try {
+        mongoose.connect(process.env.MONGO_CONNECTION);
+        console.log("DB Connected");
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
 
+// MongoDB Database Connection Call
+DBConnection();
+
+// The App Listing in the PORT of 3001
+app.listen(
+    process.env.PORT,
+    () => {
+        console.log("Server Running in http://localhost:" + process.env.PORT);
+    }
+)
 

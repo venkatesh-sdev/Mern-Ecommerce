@@ -1,0 +1,22 @@
+{
+    "productName": "Gaming keyBoard",
+    "productDescription": "Best for Gaming",
+    "productPrice": 500,
+    "productRatings": 4,
+    "productImages": [
+        {
+            "image": "keyboard.jpg"
+        }
+    ],
+    "productCategory": "Electronics",
+    "productSeller": "Beast Gaming",
+    "productStock": 10,
+    "productReviewCount": 10,
+    "productReview": [
+        {
+            "userName": "Venkatesh",
+            "userRating": "3",
+            "userComment": "Good Product"
+        }
+    ]
+}
