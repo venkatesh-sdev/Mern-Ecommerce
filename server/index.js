@@ -4,21 +4,19 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import multer from 'multer';
 import morgan from 'morgan';
-import mongoose from 'mongoose';
 
 // Built-In packages
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { randomUUID } from 'crypto';
 
+// Utilites 
+import DBConnection from './utils/DBConnection.js';
+import errorMiddleware from './middlewares/error.middleware.js';
+
 // Routers
 import ProductRouter from './routes/products.route.js';
 
-// Controllers
-
-// Middlewares
-
-// Models
 
 // --- Defaults --- //
 dotenv.config();
@@ -55,27 +53,19 @@ export const upload = multer({ storage });
 // --- Routes With Files --- //
 
 // --- Router Routes --- //
-app.use('/api/products', ProductRouter);
+app.use('/products', ProductRouter);
 
 
-// --- Connections --- //
-const DBConnection = async () => {
-    try {
-        mongoose.connect(process.env.MONGO_CONNECTION);
-        console.log("DB Connected");
-    }
-    catch (error) {
-        console.log(error);
-    }
-};
+// Middlewares
+app.use(errorMiddleware);
 
 // MongoDB Database Connection Call
-DBConnection();
 
 // The App Listing in the PORT of 3001
 app.listen(
     process.env.PORT,
     () => {
+        DBConnection();
         console.log("Server Running in http://localhost:" + process.env.PORT);
     }
 )

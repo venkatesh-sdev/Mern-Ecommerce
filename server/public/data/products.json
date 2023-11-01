@@ -1,22 +1,112 @@
-{
-    "productName": "Gaming keyBoard",
-    "productDescription": "Best for Gaming",
-    "productPrice": 500,
-    "productRatings": 4,
-    "productImages": [
-        {
-            "image": "keyboard.jpg"
-        }
-    ],
-    "productCategory": "Electronics",
-    "productSeller": "Beast Gaming",
-    "productStock": 10,
-    "productReviewCount": 10,
-    "productReview": [
-        {
-            "userName": "Venkatesh",
-            "userRating": "3",
-            "userComment": "Good Product"
-        }
-    ]
-}
+[
+    {
+        "productName": "Gaming Keyboard",
+        "productDescription": "Best for Gaming",
+        "productPrice": 500,
+        "productRatings": 4,
+        "productImages": [
+            {
+                "image": "keyboard.jpg"
+            }
+        ],
+        "productCategory": "Electronics",
+        "productSeller": "Beast Gaming",
+        "productStock": 10,
+        "productReviewCount": 10,
+        "productReview": [
+            {
+                "userName": "Venkatesh S",
+                "userRating": "3",
+                "userComment": "Good Product"
+            }
+        ]
+    },
+    {
+        "productName": "Bluetooth Mouse",
+        "productDescription": "Best for Gaming",
+        "productPrice": 800,
+        "productRatings": 4,
+        "productImages": [
+            {
+                "image": "mouse.jpg"
+            }
+        ],
+        "productCategory": "Electronics",
+        "productSeller": "Getter Products",
+        "productStock": 10,
+        "productReviewCount": 10,
+        "productReview": [
+            {
+                "userName": "Pavithra M",
+                "userRating": "5",
+                "userComment": "Good Product"
+            }
+        ]
+    },
+    {
+        "productName": "HeadPhones",
+        "productDescription": "Best for Gaming",
+        "productPrice": 900,
+        "productRatings": 4,
+        "productImages": [
+            {
+                "image": "headphone.jpg"
+            }
+        ],
+        "productCategory": "Electronics",
+        "productSeller": "Beast Gaming",
+        "productStock": 10,
+        "productReviewCount": 10,
+        "productReview": [
+            {
+                "userName": "Venkatesh S",
+                "userRating": "3",
+                "userComment": "Good Product"
+            }
+        ]
+    },
+    {
+        "productName": "Air Dopes",
+        "productDescription": "Best for Gaming",
+        "productPrice": 3500,
+        "productRatings": 4,
+        "productImages": [
+            {
+                "image": "airdopes.jpg"
+            }
+        ],
+        "productCategory": "Electronics",
+        "productSeller": "Beast Gaming",
+        "productStock": 10,
+        "productReviewCount": 10,
+        "productReview": [
+            {
+                "userName": "Venkatesh S",
+                "userRating": "3",
+                "userComment": "Good Product"
+            }
+        ]
+    },
+    {
+        "productName": "smart watch",
+        "productDescription": "Best for Gaming",
+        "productPrice": 500,
+        "productRatings": 4,
+        "productImages": [
+            {
+                "image": "smartwatch.jpg"
+            }
+        ],
+        "productCategory": "Electronics",
+        "productSeller": "Beast Gaming",
+        "productStock": 10,
+        "productReviewCount": 10,
+        "productReview": [
+            {
+                "userName": "Venkatesh S",
+                "userRating": "3",
+                "userComment": "Good Product"
+            }
+        ]
+    }
+]
