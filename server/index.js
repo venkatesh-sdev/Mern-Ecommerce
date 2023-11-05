@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 import { randomUUID } from 'crypto';
 
 // Utilites 
-import DBConnection from './utils/DBConnection.js';
+import DBConnection from './utils/DbConnection.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 
 // Routers
@@ -59,14 +59,30 @@ app.use('/products', ProductRouter);
 // Middlewares
 app.use(errorMiddleware);
 
-// MongoDB Database Connection Call
+
 
 // The App Listing in the PORT of 3001
-app.listen(
+const server = app.listen(
     process.env.PORT,
     () => {
+        // MongoDB Database Connection Call
         DBConnection();
         console.log("Server Running in http://localhost:" + process.env.PORT);
     }
 )
 
+
+// Handling Unhandled Rejection Error 
+process.on('unhandledRejection', (error) => {
+    console.log("Error: " + error.message);
+    console.log("Shutting down the server due to Unhandled Rejection")
+    server.close(() => { process.exit(1) });
+})
+
+
+// Handling UnCaught Exception Error
+process.on('uncaughtException', (error) => {
+    console.log("Error: " + error.message);
+    console.log("Shutting down the server due to Uncaught Exception")
+    server.close(() => { process.exit(1) });
+})

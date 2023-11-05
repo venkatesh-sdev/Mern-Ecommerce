@@ -2,7 +2,7 @@ import productsData from '../public/data/products.json' assert { type: "json" };
 import Product from '../models/Products.model.js';
 import dotenv from 'dotenv';
 
-import DBConnection from './DBConnection.js';
+import DBConnection from './DbConnection.js';
 
 // Environment configuration
 dotenv.config()

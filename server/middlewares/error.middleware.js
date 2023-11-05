@@ -12,11 +12,17 @@ export default async (error, req, res, next) => {
     }
     if (process.env.NODE_ENV == 'production') {
         let errorMessage = error.message;
-        let err = { ...error }
+        let err = new Error(errorMessage)
         if (error.name === "ValidationError") {
             errorMessage = Object.values(error.errors).map(value => value.message);
             err = new ErrorHandler(errorMessage, 400)
         }
+
+        if (error.name === "CastError") {
+            errorMessage = "Resource Not Found : " + error.path;
+            err = new Error(errorMessage, 400)
+        }
+
         res.status(error.statusCode).json({
             message: err.message || "Internal Server Error",
             success: false,
