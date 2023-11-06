@@ -1,11 +1,13 @@
 import Product from "../models/Products.model.js";
 import ErrorHandler from '../utils/ErrorHandler.js';
 import catchAsyncError from "../utils/catchAsyncError.js";
+import ProductFeatures from '../utils/ProductFeatures.js'
 
 export const getAllProducts = catchAsyncError(async (req, res, next) => {
-
+    // 
+    const productFeatures = new ProductFeatures(Product.find({}), req.query).search().filter();
     // Getting All Products from Database
-    const products = await Product.find({});
+    const products = await productFeatures.products;
     // Sending response as All Products
     return res.status(200).json({ message: "Products Sended", success: true, productsCount: products.length, products })
 }

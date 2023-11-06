@@ -8,6 +8,7 @@ router.post('/createNewProduct', createNewProduct)
 
 // Get All products from server http://localhost:3001/products/getAllProducts 
 router.get('/getAllProducts', getAllProducts);
+
 // Get Single products from server http://localhost:3001/products/:id 
 router.get('/:id', getSingleProduct);
 

@@ -17,7 +17,6 @@ import errorMiddleware from './middlewares/error.middleware.js';
 // Routers
 import ProductRouter from './routes/products.route.js';
 
-
 // --- Defaults --- //
 dotenv.config();
 const app = express();
@@ -55,11 +54,8 @@ export const upload = multer({ storage });
 // --- Router Routes --- //
 app.use('/products', ProductRouter);
 
-
 // Middlewares
 app.use(errorMiddleware);
-
-
 
 // The App Listing in the PORT of 3001
 const server = app.listen(
@@ -71,14 +67,12 @@ const server = app.listen(
     }
 )
 
-
 // Handling Unhandled Rejection Error 
 process.on('unhandledRejection', (error) => {
     console.log("Error: " + error.message);
     console.log("Shutting down the server due to Unhandled Rejection")
     server.close(() => { process.exit(1) });
 })
-
 
 // Handling UnCaught Exception Error
 process.on('uncaughtException', (error) => {
